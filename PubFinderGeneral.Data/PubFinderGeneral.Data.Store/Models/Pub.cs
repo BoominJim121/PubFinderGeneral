@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -10,7 +11,7 @@ namespace PubFinderGeneral.Data.Store.Models
 {
     public class Pub
     {
-
+        
         public string Name { get; set; }
 
         public Category Category { get; set; }
@@ -48,13 +49,13 @@ namespace PubFinderGeneral.Data.Store.Models
 
     public class About
     {
-
         public Uri Website { get; set; }
 
         public Uri Thumbnail { get; set; }
 
         public Location Locale { get; set; }
 
+        [Phone]
         public string PhoneNumber { get; set; }
 
         public IList<Rating> Ratings { get; set; }
@@ -62,32 +63,22 @@ namespace PubFinderGeneral.Data.Store.Models
         public string Twitter { get; set; }
 
         public IList<string> Tags { get; set; }
-
-        public void SetTags(string tags)
-        {
-            Tags = new List<string>();
-            foreach (var tag in tags.Split(','))
-            {
-                Tags.Add(tag);
-            }
-        }
-
     }
 
     public class Rating
     {
         public string Name { get; set; }
 
-        public short Value { get; set; }
+        public decimal Value { get; set; }
     }
 
     public class Location
     {
         public string Address { get; set; }
 
-        public double Latitude { get; set; }
+        public decimal Latitude { get; set; }
 
-        public double Longitude { get; set; }
+        public decimal Longitude { get; set; }
     }
 
     public enum Category

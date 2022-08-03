@@ -4,7 +4,7 @@ namespace PubFinderGeneral.Data.Store
 {
     public interface IPubDataStore
     {
-        ICollection<Pub> GetAllPubData();
-        ICollection<Pub> GetFilteredPubData(Filter filter);
+        Task<ICollection<Pub>> GetAllPubData();
+        Task<ICollection<Pub>> GetFilteredPubData(Filter filter);
     }
 }
