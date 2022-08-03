@@ -3,12 +3,8 @@ using CsvHelper.Configuration;
 using Microsoft.Extensions.Logging;
 using PubFinderGeneral.Data.Store.Exceptions;
 using PubFinderGeneral.Data.Store.Models;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PubFinderGeneral.Data.Store
 {
@@ -69,12 +65,6 @@ namespace PubFinderGeneral.Data.Store
         {
             await Load();
             return Pubs;
-        }
-
-        public async Task<ICollection<Pub>> GetFilteredPubData(Filter filter)
-        {
-            await Load();
-            return filter.MatchFilter(Pubs);
         }
 
         private static async Task<IList<Pub>> FromCsv(IList<CsvPub> pubs)
