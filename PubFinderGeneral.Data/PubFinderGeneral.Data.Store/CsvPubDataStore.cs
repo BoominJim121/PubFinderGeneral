@@ -20,8 +20,6 @@ namespace PubFinderGeneral.Data.Store
         {
             _path = path;
             _fileName = fileName;
-            Load();
-
         }
 
         private async Task Load()
