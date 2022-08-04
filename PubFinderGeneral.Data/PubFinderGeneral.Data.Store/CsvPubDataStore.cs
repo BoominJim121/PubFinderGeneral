@@ -66,7 +66,6 @@ namespace PubFinderGeneral.Data.Store
             await Load();
             return Pubs;
         }
-
         private static async Task<IList<Pub>> FromCsv(IList<CsvPub> pubs)
         {
             var myPubs = new List<Pub>();
