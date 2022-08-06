@@ -16,7 +16,7 @@ follow the instructions on these sites to ensure the machine is set up correctly
 The project is a simple API that reads in a CSV file and out puts a custom formatted object list. 
 The FE is a simple React FE whcih currently just adds the pubs to a list of display cards and shows the Name, the review Except and a button for more info. 
 
-Both projects are hosted in Docker containers, that shoudl beable to talk to each other. 
+Both projects are hosted in Docker containers. 
 
 To install download the solution onto a machine with docker installed and run the following 
 
