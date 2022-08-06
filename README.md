@@ -1,8 +1,9 @@
 # Pub Finder General
 
-A simple List of Pubs in leeds with details from <a href "https://datamillnorth.org/dataset/leeds-beer-quest">Leeds Beer Quest</a>
+A simple List of Pubs in leeds with details from [Leeds Beer Quest](https://datamillnorth.org/dataset/leeds-beer-quest).
 
-##Documentation
+## Documentation
+
 The project is a simple API that reads in a CSV file and out puts a custom formatted object list. 
 The FE is a simple React FE whcih currently just adds the pubs to a list of display cards and shows the Name, the review Except and a button for more info. 
 
@@ -22,5 +23,5 @@ once that completes run
 
 This will get the data APi up and running which you can test by navigating to 
 
-<a href "http://localhost:3000/pubs"> Pubs</>
+[Pubs](http://localhost:3000/pubs)
 
