@@ -7,7 +7,7 @@ import PubCardList from './Components/PubCardList.tsx';
 function App() {
   let [result, setResult] = useState([])
   useEffect(() => {
-    fetch(`https://localhost:49173/pubs`,{
+    fetch(`http://localhost:3001/pubs`,{
       headers: {
         "Content-Type":"application/json"
       }

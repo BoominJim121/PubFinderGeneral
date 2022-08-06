@@ -7,31 +7,26 @@ const CardList = ({
     PubJsonList
 }:IPubs) =>{
 
-    const Pubs: IPublicHouse[] = [];
-
-    const loadPubs = (): Promise<IPublicHouse[]> => {
-        const hmm: IPublicHouse[] = PubJsonList as IPublicHouse[];
-        return new Promise((res) => res(hmm));
-      };
-
     const [data, setData] = useState<IPublicHouse[]>([]);
+
     useEffect(() => {
+        const loadPubs = (): Promise<IPublicHouse[]> => {
+            const hmm: IPublicHouse[] = PubJsonList as IPublicHouse[];
+            return new Promise((res) => res(hmm));
+          };
         const timer = setTimeout(() =>{
             loadPubs().then((res) => {
                 setData(res);
             });
         }, Math.random() * 1000);
         return () => clearTimeout(timer);
-    }   ,[]);
+    },[PubJsonList]);
 
-    console.log(data);
     return (
-        
         <div className="d-flex justify-content-around">
             <div className="card-columns">
-            {(
-                    
-                    data?.map(
+                {(
+                    data && data?.map(
                         ({
                             name, 
                             excerpt,
