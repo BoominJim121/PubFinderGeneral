@@ -9,7 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PubFinderGeneral.Data.Store
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PubFinderGeneral.Data.Api.Tests", "PubFinderGeneral.Data.Api.Tests\PubFinderGeneral.Data.Api.Tests.csproj", "{AC445A26-EB43-45A8-8683-A4584D0A825B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PubFinderGeneral.Data.Store.Tests", "PubFinderGeneral.Data.Store.Tests\PubFinderGeneral.Data.Store.Tests.csproj", "{85723D24-49F5-45FA-9819-A1ADA009C0A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PubFinderGeneral.Data.Store.Tests", "PubFinderGeneral.Data.Store.Tests\PubFinderGeneral.Data.Store.Tests.csproj", "{85723D24-49F5-45FA-9819-A1ADA009C0A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{39A7EA11-C760-4701-A50A-9B17993BDEE5}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+		nuget.config = nuget.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
