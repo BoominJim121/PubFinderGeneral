@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { IPublicHouse, IPubs } from '../Types/types';
 //@ts-ignore
 import PubCard  from './PubCard.tsx';
 
-const CardList = ({
+const CardList: FC<IPubs> = ({
     PubJsonList
-}:IPubs) =>{
+}) =>{
 
     const [data, setData] = useState<IPublicHouse[]>([]);
 
@@ -35,8 +35,8 @@ const CardList = ({
                             <PubCard
                                 key= {name}
                                 Name={name}
-                                Excerpt ={excerpt}
-                                Thumbnail={about?.thumbnail}
+                                Excerpt ={excerpt?? ''}
+                                Thumbnail={about?.thumbnail ?? ''}
                                 />
                         )
                     )
@@ -45,4 +45,5 @@ const CardList = ({
         </div>
     )
 }
+
 export default CardList;

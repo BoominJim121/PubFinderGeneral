@@ -1,12 +1,12 @@
-import React, {} from 'react';
+import React, { FC } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { IPubCardProps } from '../Types/types';
 
-const PubCard = ({
+const PubCard:FC<IPubCardProps> = ({
     Name,
     Excerpt,
     Thumbnail
-}:IPubCardProps) =>{
+}) =>{
     return (
         <React.Fragment>
             <Card style={{ width: '18rem' }}>

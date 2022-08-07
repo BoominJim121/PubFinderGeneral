@@ -23,7 +23,7 @@ export interface IRating {
     value?: number
 }
 export interface IPubs {
-    PubJsonList: IPublicHouse[];
+    PubJsonList: IPublicHouse[] | undefined;
 }
 
 export interface IPubCardProps {
