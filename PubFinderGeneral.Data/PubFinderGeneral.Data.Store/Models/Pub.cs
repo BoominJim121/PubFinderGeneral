@@ -4,8 +4,8 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace PubFinderGeneral.Data.Store.Models
 {
@@ -14,6 +14,7 @@ namespace PubFinderGeneral.Data.Store.Models
         
         public string Name { get; set; }
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public Category Category { get; set; }
 
         public string Excerpt { get; set; }
