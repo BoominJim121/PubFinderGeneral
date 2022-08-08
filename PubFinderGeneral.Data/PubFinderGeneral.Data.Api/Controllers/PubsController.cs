@@ -24,7 +24,7 @@ namespace PubFinderGeneral.Data.Api.Controllers
         {
             try
             {
-                ICollection<Pub>? pubs = await _datastore.GetAllPubData(pubParams.PageNumber, pubParams.PageSize); ;
+                ICollection<Pub>? pubs = await _datastore.GetAllPubData(pubParams.PageNumber, pubParams.PageSize);
 
                 if (pubs != null)
                 {
