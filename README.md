@@ -11,6 +11,11 @@ To download the .Net 6.0 SDK please go to [.Net 6.0 SDK](https://dotnet.microsof
 
 follow the instructions on these sites to ensure the machine is set up correctly. 
 Please note that if you are running on a windows machine docker virtulization must be set on in the BIOS as well or the solution may not run. 
+
+Another Gotcha i experianced was when python was not installed using npm, if you run into this error you can simply run 
+```
+> npm install python -g
+```
 ## Documentation
 
 The project is a simple API that reads in a CSV file and out puts a custom formatted object list. 
@@ -22,12 +27,12 @@ To install download the solution onto a machine with docker installed and run th
 
 open a cmd window and nivigate to the PubFinderGeneral.Data folder then please run 
 ```
->docker build -t pubfindergeneraldataapi . --no-cache
+> docker build -t pubfindergeneraldataapi . --no-cache
 ```
 once that completes run
 
 ```
->docker run -p 3001:80 -t pubfindergeneraldataapi
+> docker run -p 3001:80 -t pubfindergeneraldataapi
 ```
 
 This will get the data APi up and running which you can test by navigating to
@@ -37,13 +42,13 @@ This will get the data APi up and running which you can test by navigating to
 next open another cmd window and navigate to pubfindergeneral.client Folder and please run 
 
 ```
-docker build -t pubfindergeneralclient .
+> docker build -t pubfindergeneralclient .
 ```
 
 once that completes please run 
 
 ```
-docker run -it --rm -v /app -v /app/node_modules -p 3026:3006 -e CHOKIDAR_USEPOLLING=true pubfindergeneralclient
+> docker run -it --rm -v /app -v /app/node_modules -p 3026:3006 -e CHOKIDAR_USEPOLLING=true pubfindergeneralclient
 ```
 
 now if you navigate to [Pub Finder General](http://localhost:3026)
