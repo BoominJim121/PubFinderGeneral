@@ -1,7 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import { IPublicHouse, IPubs } from '../Types/types';
-//@ts-ignore
-import PubCard  from './PubCard.tsx';
+import PubCard  from './PubCard';
 
 const CardList: FC<IPubs> = ({
     PubJsonList

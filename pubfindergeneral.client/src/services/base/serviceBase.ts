@@ -4,8 +4,7 @@ import {
   URLSearchParamsInit,
   Base,
 } from './types';
-//@ts-ignore
-import { errorRedactionInterceptor } from '../interceptors/errorRedactionInterceptor.ts';
+import { errorRedactionInterceptor } from '../interceptors/errorRedactionInterceptor';
 
 export function createAxiosInstance(baseUrl: string): AxiosInstance {
     const axiosInstance = axios.create({

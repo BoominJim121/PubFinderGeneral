@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "target": "es6", 
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "jsx": "react",
+        "rootDir": ".",
+        "sourceMap": true,
+        "declaration": false,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "typeRoots": ["node_modules/@types"],
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "baseUrl": ".",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+    },
+    "exclude": ["node_modules"],
+    "include": ["**/*.ts", "**/*.tsx", "**/*.jsx", "**/*.js"]
+}

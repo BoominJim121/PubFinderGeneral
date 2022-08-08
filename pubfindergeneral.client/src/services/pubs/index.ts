@@ -1,11 +1,10 @@
 import { IPublicHouse } from "../../Types/types";
-//@ts-ignore
-import AuthService from "../base/AuthService.ts";
+import AuthService from "../base/AuthService";
 
 class PubsService extends AuthService
 {
     constructor(baseURL: string){
-        super('pubs-data-api');
+        super('pubs-data-api')
         this.initialize({ baseURL });
     }
 

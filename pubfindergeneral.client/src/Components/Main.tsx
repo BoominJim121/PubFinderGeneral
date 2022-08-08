@@ -1,8 +1,6 @@
 import React, { FC } from 'react';
-//@ts-ignore
-import CardList from './PubCardList.tsx'
-//@ts-ignore
-import useFetchPubs  from '../hooks/useFetchPubs.ts';
+import CardList from './PubCardList'
+import useFetchPubs  from '../hooks/useFetchPubs';
 
 const Main: FC = () => {
 

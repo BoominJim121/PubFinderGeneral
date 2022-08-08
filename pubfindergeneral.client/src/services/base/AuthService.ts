@@ -1,15 +1,15 @@
 import {
   URLSearchParamsInit
 } from './types';
-//@ts-ignore
-import ServiceBase from './serviceBase.ts';
+import ServiceBase from './serviceBase';
 
 class AuthService extends ServiceBase {
   service: string;
   accessToken: string | null;
 
   constructor(service: string) {
-    super();
+    super()
+    this.service = service;
     this.accessToken = null;
   }
 
