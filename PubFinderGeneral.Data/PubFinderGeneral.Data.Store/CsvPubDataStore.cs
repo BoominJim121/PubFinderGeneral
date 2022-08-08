@@ -59,10 +59,14 @@ namespace PubFinderGeneral.Data.Store
             }
         }
 
-        public async Task<ICollection<Pub>> GetAllPubData()
+        public async Task<ICollection<Pub>> GetAllPubData( int pageNumber, int pageSize)
         {
             await Load();
-            return Pubs;
+            return Pubs
+                .OrderBy(pub => pub.Name)
+                .Skip((pageNumber -1)* pageSize)
+                .Take(pageSize)
+                .ToList();
         }
         private static async Task<IList<Pub>> FromCsv(IList<CsvPub> pubs)
         {

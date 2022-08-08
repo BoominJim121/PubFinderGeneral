@@ -4,6 +4,6 @@ namespace PubFinderGeneral.Data.Store
 {
     public interface IPubDataStore
     {
-        Task<ICollection<Pub>> GetAllPubData();
+        Task<ICollection<Pub>> GetAllPubData(int pageNumber, int pageSize);
     }
 }

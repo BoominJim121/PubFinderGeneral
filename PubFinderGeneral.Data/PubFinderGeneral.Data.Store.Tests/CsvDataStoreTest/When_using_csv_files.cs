@@ -12,7 +12,7 @@ namespace PubFinderGeneral.Data.Store.Tests.CsvDataStoreTest
 
             var store = new CsvPubDataStore(path, fileName);
 
-            var result = await store.GetAllPubData();
+            var result = await store.GetAllPubData(1, 5);
 
             result.Should().NotBeNull();
             result.Should().NotBeEmpty();
@@ -30,7 +30,7 @@ namespace PubFinderGeneral.Data.Store.Tests.CsvDataStoreTest
 
             var store = new CsvPubDataStore(path, fileName);
 
-            var result = await store.GetAllPubData();
+            var result = await store.GetAllPubData(1, 5);
 
             result.Should().NotBeNull();
             result.Should().NotBeEmpty();
@@ -50,7 +50,7 @@ namespace PubFinderGeneral.Data.Store.Tests.CsvDataStoreTest
 
             var store = new CsvPubDataStore(path, fileName);
 
-            var result = await store.GetAllPubData();
+            var result = await store.GetAllPubData(1, 5);
 
             result.Should().NotBeNull();
             result.Should().NotBeEmpty();
@@ -70,7 +70,7 @@ namespace PubFinderGeneral.Data.Store.Tests.CsvDataStoreTest
 
             var store = new CsvPubDataStore(path, fileName);
 
-            var result = await store.GetAllPubData();
+            var result = await store.GetAllPubData(1, 5);
 
             result.Should().NotBeNull();
             result.Should().NotBeEmpty();
@@ -90,7 +90,7 @@ namespace PubFinderGeneral.Data.Store.Tests.CsvDataStoreTest
 
             var store = new CsvPubDataStore(path, fileName);
 
-            var result = await store.GetAllPubData();
+            var result = await store.GetAllPubData(1,5);
 
             result.Should().NotBeNull();
             result.Should().NotBeEmpty();

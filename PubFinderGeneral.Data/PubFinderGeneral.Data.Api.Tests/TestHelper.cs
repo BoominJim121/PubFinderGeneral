@@ -12,6 +12,15 @@ namespace PubFinderGeneral.Data.Api.Tests
                 a_valid_pub()
             };
 
+        public static IList<Pub> a_list_of_many_pubs(int numberofPubs)
+        {
+            var pubs = new List<Pub>();
+            for(var i = 0; i< numberofPubs; i++)
+            {
+                pubs.Add(a_valid_pub());
+            }
+            return pubs;
+        }
         public static Pub a_valid_pub()
         {
             //using this from file "...escobar","Closed venues","http://leedsbeer.info/?p=765","2012-11-30T21:58:52+00:00","...It's really dark in here!","http://leedsbeer.info/wp-content/uploads/2012/11/20121129_185815.jpg","53.8007317","","23-25 Great George Street, Leeds LS1 3BB","0113 220 4389","EscobarLeeds","2","3","3","3","food,live music,sofas"
@@ -49,18 +58,18 @@ namespace PubFinderGeneral.Data.Api.Tests
 
         }
 
-        public static IPubDataStore a_mock_pub_data_store(IList<Pub> pubs)
+        public static IPubDataStore a_mock_pub_data_store(IList<Pub> pubs,  int pageNumber = 1, int pageSize = 25)
         {
             var moc = new Mock<IPubDataStore>();
-            moc.Setup(s => s.GetAllPubData())
-                .ReturnsAsync(pubs);
-           return moc.Object;
+            moc.Setup(s => s.GetAllPubData(pageNumber, pageSize))
+                .ReturnsAsync(pubs.Skip((pageNumber -1)* pageSize).Take(pageSize).ToList());
+            return moc.Object;
         }
 
-        public static IPubDataStore a_mock_pub_data_store_that_throws_an_exception()
+        public static IPubDataStore a_mock_pub_data_store_that_throws_an_exception(int pageNumber = 1, int pageSize = 25)
         {
             var moc = new Mock<IPubDataStore>();
-            moc.Setup(s => s.GetAllPubData())
+            moc.Setup(s => s.GetAllPubData(pageNumber, pageSize))
                 .ThrowsAsync(new InvalidOperationException());
             return moc.Object;
         }

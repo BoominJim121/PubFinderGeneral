@@ -33,7 +33,7 @@ namespace PubFinderGeneral.Data.Api.Tests
                         if (config.DataStore == null)
                         {
                             var moc = new Mock<IPubDataStore>();
-                            moc.Setup(s => s.GetAllPubData())
+                            moc.Setup(s => s.GetAllPubData(1, 25))
                             .ReturnsAsync(new List<Pub>());
                             config.DataStore = moc.Object;
 
