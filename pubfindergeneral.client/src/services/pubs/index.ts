@@ -1,4 +1,4 @@
-import { IPublicHouse } from "../../Types/types";
+import { IPubFinderGeneralDataParams, IPublicHouseResponse } from "../../Types/types";
 import AuthService from "../base/AuthService";
 
 class PubsService extends AuthService
@@ -8,10 +8,10 @@ class PubsService extends AuthService
         this.initialize({ baseURL });
     }
 
-    async GetPubs(
-      ): Promise<IPublicHouse[]> {
+    async GetPubs( params: IPubFinderGeneralDataParams
+      ): Promise<IPublicHouseResponse> {
         return await this.get(
-          `/pubs`
+          `/pubs?pageNumber=${params.pageNumber}&pageSize=${params.pageSize}`, 
         );
       }
 }

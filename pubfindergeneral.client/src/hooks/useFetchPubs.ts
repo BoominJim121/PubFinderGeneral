@@ -1,14 +1,14 @@
 //@ts-ignore
 import services from '../services/services.ts';
-import { IPublicHouse } from '../Types/types';
+import { IPubFinderGeneralDataParams, IPublicHouseResponse } from '../Types/types';
 import { AxiosError } from 'axios';
 import { useQuery } from 'react-query';
 
-const useFetchPubs = () =>
-  useQuery<IPublicHouse[], AxiosError>(
+const useFetchPubs = (params: IPubFinderGeneralDataParams) =>
+  useQuery<IPublicHouseResponse, AxiosError>(
     ['public-house-request'],
     () =>
-      services.pubsService.GetPubs(),
+      services.pubsService.GetPubs(params),
     {
       retry: false,
       refetchOnMount: false

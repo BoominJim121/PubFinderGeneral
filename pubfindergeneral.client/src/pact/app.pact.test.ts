@@ -26,7 +26,7 @@ const pactProvider = new Pact({
   afterAll(async () => {
     await pactProvider.finalize();
   });
-  
+
   describe('Pubs', () => {
     describe('Get Pubs', () => {
       it('returns 200 with expected response', async () => {
@@ -71,7 +71,7 @@ const pactProvider = new Pact({
           }
         });
       
-        await pubService.GetPubs();
+        await pubService.GetPubs({pageNumber:1, pageSize:25});
       });
     });
   })

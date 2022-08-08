@@ -1,3 +1,14 @@
+export interface IPublicHouseResponse {
+    pubs: IPublicHouse[],
+    totalPages: number
+}
+export interface IPubFinderGeneralDataParams {
+    pageSize: number,
+    pageNumber: number
+}
+export interface IPubCardListProps {
+    publicHouses: IPublicHouseResponse 
+}
 export interface IPublicHouse {
     name: string,
     category?: string,
