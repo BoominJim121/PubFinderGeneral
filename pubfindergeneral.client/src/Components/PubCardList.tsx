@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { IPublicHouse, IPubs } from '../Types/types';
 import PubCard  from './PubCard';
-
+import {Grid} from '@material-ui/core';
 const CardList: FC<IPubs> = ({
     PubJsonList
 }) =>{
@@ -22,8 +22,11 @@ const CardList: FC<IPubs> = ({
     },[PubJsonList]);
 
     return (
-        <div className="d-flex justify-content-around">
-            <div className="card-columns">
+        <Grid container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+      >          
                 {(
                     data && data?.map(
                         ({
@@ -31,17 +34,19 @@ const CardList: FC<IPubs> = ({
                             excerpt,
                             about
                         }) =>(
-                            <PubCard
-                                key= {name}
-                                Name={name}
-                                Excerpt ={excerpt?? ''}
-                                Thumbnail={about?.thumbnail ?? ''}
-                                />
+                            <Grid item xs={2}>
+                                <PubCard
+                                    key= {name}
+                                    Name={name}
+                                    Excerpt ={excerpt?? ''}
+                                    Thumbnail={about?.thumbnail ?? ''}
+                                    AboutValue={about}
+                                    />
+                            </Grid>
                         )
                     )
                 )}
-            </div>
-        </div>
+        </Grid>
     )
 }
 

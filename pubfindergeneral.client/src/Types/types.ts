@@ -30,4 +30,12 @@ export interface IPubCardProps {
     Name: string,
     Excerpt: string,
     Thumbnail: string,
+    AboutValue: IAbout | undefined
+}
+
+export interface IAboutProps {
+    open: boolean;
+    selectedValue: IAbout| undefined;
+    name: string;
+    onClose: (value: IAbout| undefined) => void;
 }

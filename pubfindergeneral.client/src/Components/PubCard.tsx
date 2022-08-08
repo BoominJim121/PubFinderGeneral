@@ -1,12 +1,26 @@
 import React, { FC } from 'react';
-import { Card, Button } from 'react-bootstrap';
-import { IPubCardProps } from '../Types/types';
+import { Card } from 'react-bootstrap';
+import { IAbout, IPubCardProps } from '../Types/types';
+import Button from '@mui/material/Button';
+import  About  from './About';
 
 const PubCard:FC<IPubCardProps> = ({
     Name,
     Excerpt,
-    Thumbnail
+    Thumbnail,
+    AboutValue
 }) =>{
+    const [open, setOpen] = React.useState(false);
+    const [selectedValue, setSelectedValue] = React.useState(AboutValue);
+    const handleClickOpen = () => {
+        setOpen(true);
+      };
+    
+      const handleClose = (value: IAbout| undefined) => {
+        setOpen(false);
+        setSelectedValue(value);
+      };
+
     return (
         <React.Fragment>
             <Card style={{ width: '18rem' }}>
@@ -18,7 +32,15 @@ const PubCard:FC<IPubCardProps> = ({
                         {Excerpt}
                     </Card.Text>
                 </Card.Body>
-                <Button variant="primary">Show More</Button>
+                <Button variant="outlined" onClick={handleClickOpen}>
+                    About...
+                </Button>
+                <About
+                    selectedValue={AboutValue}
+                    open={open}
+                    onClose={handleClose}
+                    name={Name}
+                />
                 </Card.Body>
             </Card>
           </React.Fragment>
