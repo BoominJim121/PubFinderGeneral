@@ -75,7 +75,7 @@ namespace PubFinderGeneral.Data.Store
                     myPubs.Add(new Pub
                     {
                         Name = x.name,
-                        Category = Pub.GetCategoryFromDescription(x.category),
+                        Category = x.category,
                         LastUpdatedDateTime = Convert.ToDateTime(x.date),
                         Excerpt = x.excerpt,
                         About = new About

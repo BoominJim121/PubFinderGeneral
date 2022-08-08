@@ -18,7 +18,7 @@ namespace PubFinderGeneral.Data.Api.Tests
             return new Pub
             {
                 Name = "...escobar",
-                Category = Pub.GetCategoryFromDescription("Closed venues"),
+                Category = "Closed venues",
                 LastUpdatedDateTime = DateTime.Parse("2012-11-30T21:58:52+00:00"),
                 Excerpt = "...It's really dark in here!",
                 About = new About
