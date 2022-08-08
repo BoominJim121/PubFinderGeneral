@@ -12,10 +12,6 @@ To download the .Net 6.0 SDK please go to [.Net 6.0 SDK](https://dotnet.microsof
 follow the instructions on these sites to ensure the machine is set up correctly. 
 Please note that if you are running on a windows machine docker virtulization must be set on in the BIOS as well or the solution may not run. 
 
-Another Gotcha i experianced was when python was not installed using npm, if you run into this error you can simply run 
-```
-> npm install python -g
-```
 ## Documentation
 
 The project is a simple API that reads in a CSV file and out puts a custom formatted object list. 
