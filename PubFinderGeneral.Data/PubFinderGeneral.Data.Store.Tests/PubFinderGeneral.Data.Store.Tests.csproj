@@ -30,6 +30,9 @@
     <None Update="CsvDataStoreTest\TestFiles\FieldsHaveNoneASCIICharacters.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="CsvDataStoreTest\TestFiles\leedsbeerquest.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="CsvDataStoreTest\TestFiles\NameAndDescriptionHadFullStops.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

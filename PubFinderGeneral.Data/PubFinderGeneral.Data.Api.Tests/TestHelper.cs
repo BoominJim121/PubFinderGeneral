@@ -61,17 +61,28 @@ namespace PubFinderGeneral.Data.Api.Tests
         public static IPubDataStore a_mock_pub_data_store(IList<Pub> pubs,  int pageNumber = 1, int pageSize = 25)
         {
             var moc = new Mock<IPubDataStore>();
+            var returnPubs = pubs.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+            var count = GetTotalPages(pageSize, pubs);
             moc.Setup(s => s.GetAllPubData(pageNumber, pageSize))
-                .ReturnsAsync(pubs.Skip((pageNumber -1)* pageSize).Take(pageSize).ToList());
+                .ReturnsAsync((returnPubs, count));
             return moc.Object;
         }
 
+
+        
         public static IPubDataStore a_mock_pub_data_store_that_throws_an_exception(int pageNumber = 1, int pageSize = 25)
         {
             var moc = new Mock<IPubDataStore>();
             moc.Setup(s => s.GetAllPubData(pageNumber, pageSize))
                 .ThrowsAsync(new InvalidOperationException());
             return moc.Object;
+        }
+
+        private static int GetTotalPages(int pageSize, IList<Pub> pubs)
+        {
+            var totalPageCount = Math.DivRem(pubs.Count(), pageSize, out var remain);
+            if (remain > 0) totalPageCount++;
+            return totalPageCount;
         }
     }
 }

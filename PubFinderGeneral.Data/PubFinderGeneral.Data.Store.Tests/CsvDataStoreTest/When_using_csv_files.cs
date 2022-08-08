@@ -14,11 +14,11 @@ namespace PubFinderGeneral.Data.Store.Tests.CsvDataStoreTest
 
             var result = await store.GetAllPubData(1, 5);
 
-            result.Should().NotBeNull();
-            result.Should().NotBeEmpty();
-            result.Count().Should().Be(4);
-            result.FirstOrDefault().Should().NotBeNull();
-            result.FirstOrDefault()?.Name.Should().NotBe(string.Empty);
+            result.Item1.Should().NotBeNull();
+            result.Item1.Should().NotBeEmpty();
+            result.Item1.Count().Should().Be(4);
+            result.Item1.FirstOrDefault().Should().NotBeNull();
+            result.Item1.FirstOrDefault()?.Name.Should().NotBe(string.Empty);
 
         }
 
@@ -32,13 +32,13 @@ namespace PubFinderGeneral.Data.Store.Tests.CsvDataStoreTest
 
             var result = await store.GetAllPubData(1, 5);
 
-            result.Should().NotBeNull();
-            result.Should().NotBeEmpty();
-            result.Count().Should().Be(1);
-            result.FirstOrDefault().Should().NotBeNull();
-            result.FirstOrDefault()?.Name.Should().NotBe(string.Empty);
-            result.FirstOrDefault()?.Name.Should().Contain("...");
-            result.FirstOrDefault()?.Excerpt.Should().Contain("...");
+            result.Item1.Should().NotBeNull();
+            result.Item1.Should().NotBeEmpty();
+            result.Item1.Count().Should().Be(1);
+            result.Item1.FirstOrDefault().Should().NotBeNull();
+            result.Item1.FirstOrDefault()?.Name.Should().NotBe(string.Empty);
+            result.Item1.FirstOrDefault()?.Name.Should().Contain("...");
+            result.Item1.FirstOrDefault()?.Excerpt.Should().Contain("...");
 
         }
 
@@ -52,13 +52,13 @@ namespace PubFinderGeneral.Data.Store.Tests.CsvDataStoreTest
 
             var result = await store.GetAllPubData(1, 5);
 
-            result.Should().NotBeNull();
-            result.Should().NotBeEmpty();
-            result.Count().Should().Be(1);
-            result.FirstOrDefault().Should().NotBeNull();
-            result.FirstOrDefault()?.Name.Should().NotBe(string.Empty);
-            result.FirstOrDefault()?.Name.Should().Contain("\"");
-            result.FirstOrDefault()?.Excerpt.Should().Contain("\"");
+            result.Item1.Should().NotBeNull();
+            result.Item1.Should().NotBeEmpty();
+            result.Item1.Count().Should().Be(1);
+            result.Item1.FirstOrDefault().Should().NotBeNull();
+            result.Item1.FirstOrDefault()?.Name.Should().NotBe(string.Empty);
+            result.Item1.FirstOrDefault()?.Name.Should().Contain("\"");
+            result.Item1.FirstOrDefault()?.Excerpt.Should().Contain("\"");
 
         }
 
@@ -72,12 +72,12 @@ namespace PubFinderGeneral.Data.Store.Tests.CsvDataStoreTest
 
             var result = await store.GetAllPubData(1, 5);
 
-            result.Should().NotBeNull();
-            result.Should().NotBeEmpty();
-            result.Count().Should().Be(1);
-            result.FirstOrDefault().Should().NotBeNull();
-            result.FirstOrDefault()?.About.Ratings.Any(x => x.Name == "Beer").Should().BeTrue();
-            result.FirstOrDefault()?.About.Ratings.FirstOrDefault(x => x.Name == "Beer")?.Value.Should().Be(Convert.ToDecimal(1.5));
+            result.Item1.Should().NotBeNull();
+            result.Item1.Should().NotBeEmpty();
+            result.Item1.Count().Should().Be(1);
+            result.Item1.FirstOrDefault().Should().NotBeNull();
+            result.Item1.FirstOrDefault()?.About.Ratings.Any(x => x.Name == "Beer").Should().BeTrue();
+            result.Item1.FirstOrDefault()?.About.Ratings.FirstOrDefault(x => x.Name == "Beer")?.Value.Should().Be(Convert.ToDecimal(1.5));
 
         }
 
@@ -92,13 +92,47 @@ namespace PubFinderGeneral.Data.Store.Tests.CsvDataStoreTest
 
             var result = await store.GetAllPubData(1,5);
 
-            result.Should().NotBeNull();
-            result.Should().NotBeEmpty();
-            result.Count().Should().Be(1);
-            result.FirstOrDefault().Should().NotBeNull();
-            result.FirstOrDefault()?.Name.Should().NotBe(string.Empty);
-            result.FirstOrDefault()?.Name.Should().Be("Arts Café日本人 中國的"); 
+            result.Item1.Should().NotBeNull();
+            result.Item1.Should().NotBeEmpty();
+            result.Item1.Count().Should().Be(1);
+            result.Item1.FirstOrDefault().Should().NotBeNull();
+            result.Item1.FirstOrDefault()?.Name.Should().NotBe(string.Empty);
+            result.Item1.FirstOrDefault()?.Name.Should().Be("Arts Café日本人 中國的"); 
 
+        }
+
+        [Fact]
+        public async Task Given_a_csv_file_with_many_values_total_page_size_is_calculated_correctly()
+        {
+            var path = Path.Combine(Environment.CurrentDirectory, "CsvDataStoreTest", "TestFiles");
+            var fileName = "leedsbeerquest.csv";
+
+            var store = new CsvPubDataStore(path, fileName);
+
+            var result = await store.GetAllPubData(1, 2);
+
+            result.Item2.Should().NotBe(0);
+            result.Item2.Should().Be(121);
+        }
+
+        [Fact]
+        public async Task Given_a_csv_file_with_many_values_total_page_size_is_calculated_correctly_when_pages_not_all_full()
+        {
+            var path = Path.Combine(Environment.CurrentDirectory, "CsvDataStoreTest", "TestFiles");
+            var fileName = "leedsbeerquest.csv";
+
+            var store = new CsvPubDataStore(path, fileName);
+
+            var result = await store.GetAllPubData(1, 8);
+
+            result.Item2.Should().NotBe(0);
+            result.Item2.Should().Be(31);
+
+            result = await store.GetAllPubData(31, 8);
+
+            result.Item1.Should().NotBeNull();
+            result.Item1.Should().NotBeEmpty();
+            result.Item1.Count().Should().Be(2);
         }
     }
 }

@@ -59,15 +59,25 @@ namespace PubFinderGeneral.Data.Store
             }
         }
 
-        public async Task<ICollection<Pub>> GetAllPubData( int pageNumber, int pageSize)
+        public async Task<(ICollection<Pub>, int)> GetAllPubData( int pageNumber, int pageSize)
         {
             await Load();
-            return Pubs
+            var pubs = Pubs
                 .OrderBy(pub => pub.Name)
-                .Skip((pageNumber -1)* pageSize)
+                .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();
+            int totalPageCount = GetTotalPages(pageSize);
+            return (pubs, totalPageCount);
         }
+
+        private int GetTotalPages(int pageSize)
+        {
+            var totalPageCount = Math.DivRem(Pubs.Count(), pageSize, out var remain);
+            if (remain > 0) totalPageCount++;
+            return totalPageCount;
+        }
+
         private static async Task<IList<Pub>> FromCsv(IList<CsvPub> pubs)
         {
             var myPubs = new List<Pub>();

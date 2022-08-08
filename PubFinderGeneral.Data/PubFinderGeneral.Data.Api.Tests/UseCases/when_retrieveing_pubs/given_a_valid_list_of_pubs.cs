@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using PubFinderGeneral.Data.Api.Models.Response;
 using PubFinderGeneral.Data.Store.Models;
 using System.Net;
 using Xunit;
@@ -15,7 +16,7 @@ namespace PubFinderGeneral.Data.Api.Tests.UseCases.when_retrieveing_pubs
         {
             public HttpStatusCode _resultStatusCode;
             public string _requestId = Guid.NewGuid().ToString();
-            public List<Pub> _response;
+            public PubsResponse _response;
 
             protected override async Task Setup()
             {
@@ -29,7 +30,7 @@ namespace PubFinderGeneral.Data.Api.Tests.UseCases.when_retrieveing_pubs
                     });
 
                 _resultStatusCode = result.StatusCode;
-                _response = await result.deserialize_content_as_<List<Pub>>();
+                _response = await result.deserialize_content_as_<PubsResponse>();
             }
         }
         public given_a_valid__list_of_pubs(Fixture fixture) => _fixture = fixture;
@@ -44,9 +45,10 @@ namespace PubFinderGeneral.Data.Api.Tests.UseCases.when_retrieveing_pubs
         public void then_response_is_valid()
         {
             _fixture._response.Should().NotBeNull();
-            _fixture._response.Should().NotBeEmpty();
-            _fixture._response.FirstOrDefault().Should().NotBeNull();
-            _fixture._response.FirstOrDefault().Should().BeOfType<Pub>();
+            _fixture._response.Pubs.Should().NotBeNull();
+            _fixture._response.Pubs.Should().NotBeEmpty();
+            _fixture._response.Pubs.FirstOrDefault().Should().NotBeNull();
+            _fixture._response.Pubs.FirstOrDefault().Should().BeOfType<Pub>();
         }
 
     }

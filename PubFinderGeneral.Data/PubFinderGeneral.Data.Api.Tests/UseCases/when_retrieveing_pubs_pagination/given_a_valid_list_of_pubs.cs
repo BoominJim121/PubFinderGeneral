@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using PubFinderGeneral.Data.Api.Models.Response;
 using PubFinderGeneral.Data.Store.Models;
 using System.Net;
 using Xunit;
@@ -15,7 +16,7 @@ namespace PubFinderGeneral.Data.Api.Tests.UseCases.when_retrieveing_pubs_paginat
         {
             public HttpStatusCode _resultStatusCode;
             public string _requestId = Guid.NewGuid().ToString();
-            public List<Pub> _response;
+            public PubsResponse _response;
 
             protected override async Task Setup()
             {
@@ -29,7 +30,7 @@ namespace PubFinderGeneral.Data.Api.Tests.UseCases.when_retrieveing_pubs_paginat
                     });
 
                 _resultStatusCode = result.StatusCode;
-                _response = await result.deserialize_content_as_<List<Pub>>();
+                _response = await result.deserialize_content_as_<PubsResponse>();
             }
         }
         public given_a_valid__list_of_pubs_when_requesting_page_of_10(Fixture fixture) => _fixture = fixture;
@@ -44,15 +45,16 @@ namespace PubFinderGeneral.Data.Api.Tests.UseCases.when_retrieveing_pubs_paginat
         public void then_response_is_valid()
         {
             _fixture._response.Should().NotBeNull();
-            _fixture._response.Should().NotBeEmpty();
-            _fixture._response.FirstOrDefault().Should().NotBeNull();
-            _fixture._response.FirstOrDefault().Should().BeOfType<Pub>();
+            _fixture._response.Pubs.Should().NotBeNull();
+            _fixture._response.Pubs.Should().NotBeEmpty();
+            _fixture._response.Pubs.FirstOrDefault().Should().NotBeNull();
+            _fixture._response.Pubs.FirstOrDefault().Should().BeOfType<Pub>();
             
         }
         [Fact]
         public void then_response_has_10_pubs()
         {
-            _fixture._response.Count().Should().Be(10);
+            _fixture._response.Pubs.Count().Should().Be(10);
         }
 
     }
@@ -65,7 +67,7 @@ namespace PubFinderGeneral.Data.Api.Tests.UseCases.when_retrieveing_pubs_paginat
         {
             public HttpStatusCode _resultStatusCode;
             public string _requestId = Guid.NewGuid().ToString();
-            public List<Pub> _response;
+            public PubsResponse _response;
 
             protected override async Task Setup()
             {
@@ -79,7 +81,7 @@ namespace PubFinderGeneral.Data.Api.Tests.UseCases.when_retrieveing_pubs_paginat
                     });
 
                 _resultStatusCode = result.StatusCode;
-                _response = await result.deserialize_content_as_<List<Pub>>();
+                _response = await result.deserialize_content_as_<PubsResponse>();
             }
         }
         public given_a_valid__list_of_pubs_when_requesting_page_of_15(Fixture fixture) => _fixture = fixture;
@@ -93,15 +95,16 @@ namespace PubFinderGeneral.Data.Api.Tests.UseCases.when_retrieveing_pubs_paginat
         [Fact]
         public void then_response_is_valid()
         {
-            _fixture._response.Should().NotBeNull();
-            _fixture._response.Should().NotBeEmpty();
-            _fixture._response.FirstOrDefault().Should().NotBeNull();
-            _fixture._response.FirstOrDefault().Should().BeOfType<Pub>();
+            _fixture._response.Pubs.Should().NotBeNull();
+            _fixture._response.Pubs.Should().NotBeNull();
+            _fixture._response.Pubs.Should().NotBeEmpty();
+            _fixture._response.Pubs.FirstOrDefault().Should().NotBeNull();
+            _fixture._response.Pubs.FirstOrDefault().Should().BeOfType<Pub>();
         }
         [Fact]
         public void then_response_has_15_pubs()
         {
-            _fixture._response.Count().Should().Be(15);
+            _fixture._response.Pubs.Count().Should().Be(15);
         }
 
     }
@@ -114,7 +117,7 @@ namespace PubFinderGeneral.Data.Api.Tests.UseCases.when_retrieveing_pubs_paginat
         {
             public HttpStatusCode _resultStatusCode;
             public string _requestId = Guid.NewGuid().ToString();
-            public List<Pub> _response;
+            public PubsResponse _response;
 
             protected override async Task Setup()
             {
@@ -128,7 +131,7 @@ namespace PubFinderGeneral.Data.Api.Tests.UseCases.when_retrieveing_pubs_paginat
                     });
 
                 _resultStatusCode = result.StatusCode;
-                _response = await result.deserialize_content_as_<List<Pub>>();
+                _response = await result.deserialize_content_as_<PubsResponse>();
             }
         }
         public given_a_valid__list_of_pubs_when_requesting_page_of_5_second_page(Fixture fixture) => _fixture = fixture;
@@ -143,14 +146,15 @@ namespace PubFinderGeneral.Data.Api.Tests.UseCases.when_retrieveing_pubs_paginat
         public void then_response_is_valid()
         {
             _fixture._response.Should().NotBeNull();
-            _fixture._response.Should().NotBeEmpty();
-            _fixture._response.FirstOrDefault().Should().NotBeNull();
-            _fixture._response.FirstOrDefault().Should().BeOfType<Pub>();
+            _fixture._response.Pubs.Should().NotBeNull();
+            _fixture._response.Pubs.Should().NotBeEmpty();
+            _fixture._response.Pubs.FirstOrDefault().Should().NotBeNull();
+            _fixture._response.Pubs.FirstOrDefault().Should().BeOfType<Pub>();
         }
         [Fact]
         public void then_response_has_5_pubs()
         {
-            _fixture._response.Count().Should().Be(5);
+            _fixture._response.Pubs.Count().Should().Be(5);
         }
 
     }
@@ -163,7 +167,7 @@ namespace PubFinderGeneral.Data.Api.Tests.UseCases.when_retrieveing_pubs_paginat
         {
             public HttpStatusCode _resultStatusCode;
             public string _requestId = Guid.NewGuid().ToString();
-            public List<Pub> _response;
+            public PubsResponse _response;
 
             protected override async Task Setup()
             {
@@ -177,7 +181,7 @@ namespace PubFinderGeneral.Data.Api.Tests.UseCases.when_retrieveing_pubs_paginat
                     });
 
                 _resultStatusCode = result.StatusCode;
-                _response = await result.deserialize_content_as_<List<Pub>>();
+                _response = await result.deserialize_content_as_<PubsResponse>();
             }
         }
         public given_a_valid__list_of_20_pubs_when_requesting_page_of_15_second_page(Fixture fixture) => _fixture = fixture;
@@ -192,15 +196,16 @@ namespace PubFinderGeneral.Data.Api.Tests.UseCases.when_retrieveing_pubs_paginat
         public void then_response_is_valid()
         {
             _fixture._response.Should().NotBeNull();
-            _fixture._response.Should().NotBeEmpty();
-            _fixture._response.FirstOrDefault().Should().NotBeNull();
-            _fixture._response.FirstOrDefault().Should().BeOfType<Pub>();
+            _fixture._response.Pubs.Should().NotBeNull();
+            _fixture._response.Pubs.Should().NotBeEmpty();
+            _fixture._response.Pubs.FirstOrDefault().Should().NotBeNull();
+            _fixture._response.Pubs.FirstOrDefault().Should().BeOfType<Pub>();
         }
 
         [Fact]
         public void then_response_has_5_pubs()
         {
-            _fixture._response.Count().Should().Be(5);
+            _fixture._response.Pubs.Count().Should().Be(5);
         }
 
     }

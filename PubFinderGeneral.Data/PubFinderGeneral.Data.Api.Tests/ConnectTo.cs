@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Moq;
+using PubFinderGeneral.Data.Api.Models.Response;
 using PubFinderGeneral.Data.Store;
 using PubFinderGeneral.Data.Store.Models;
 
@@ -34,7 +35,7 @@ namespace PubFinderGeneral.Data.Api.Tests
                         {
                             var moc = new Mock<IPubDataStore>();
                             moc.Setup(s => s.GetAllPubData(1, 25))
-                            .ReturnsAsync(new List<Pub>());
+                            .ReturnsAsync((new List<Pub>(), 0));
                             config.DataStore = moc.Object;
 
                         }

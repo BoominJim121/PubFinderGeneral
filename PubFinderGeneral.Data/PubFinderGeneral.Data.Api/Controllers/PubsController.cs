@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PubFinderGeneral.Data.Api.Models;
+using PubFinderGeneral.Data.Api.Models.Response;
 using PubFinderGeneral.Data.Store;
 using PubFinderGeneral.Data.Store.Models;
 
@@ -24,11 +25,12 @@ namespace PubFinderGeneral.Data.Api.Controllers
         {
             try
             {
-                ICollection<Pub>? pubs = await _datastore.GetAllPubData(pubParams.PageNumber, pubParams.PageSize);
+                (ICollection<Pub>?, int) pubsAndCount = await _datastore.GetAllPubData(pubParams.PageNumber, pubParams.PageSize);
 
-                if (pubs != null)
+                if (pubsAndCount.Item1 != null)
                 {
-                    return Ok(pubs);
+                    var response = new PubsResponse(pubsAndCount.Item1, pubsAndCount.Item2);
+                    return Ok(response);
                 }
                 return NoContent();
             }
