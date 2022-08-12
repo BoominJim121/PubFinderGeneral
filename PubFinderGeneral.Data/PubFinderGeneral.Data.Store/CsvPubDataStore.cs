@@ -123,6 +123,20 @@ namespace PubFinderGeneral.Data.Store
             }
             return myPubs;
         }
+
+        public async Task<(ICollection<Pub>, int)> GetFilteredPubData(int pageNumber, int pageSize, string tag)
+        {
+            await Load();
+            var pubs = Pubs
+                .Where(x => x.About.Tags.Any(t => string.Compare(t, tag, StringComparison.InvariantCultureIgnoreCase) ==0))
+                .OrderBy(pub => pub.Name)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+            int totalPageCount = GetTotalPages(pageSize);
+            return (pubs, totalPageCount);
+        }
+
         public class CsvPub
         {
             public string name { get; set; }

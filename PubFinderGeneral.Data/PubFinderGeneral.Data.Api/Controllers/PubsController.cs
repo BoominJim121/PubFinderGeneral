@@ -19,13 +19,14 @@ namespace PubFinderGeneral.Data.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(IList<Pub>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Get([FromQuery] PubsParameters pubParams)
         {
             try
             {
-                (ICollection<Pub>?, int) pubsAndCount = await _datastore.GetAllPubData(pubParams.PageNumber, pubParams.PageSize);
+                (ICollection<Pub>?, int) pubsAndCount = await _datastore.GetFilteredPubData(pubParams.PageNumber, pubParams.PageSize, pubParams.tags);
 
                 if (pubsAndCount.Item1 != null)
                 {

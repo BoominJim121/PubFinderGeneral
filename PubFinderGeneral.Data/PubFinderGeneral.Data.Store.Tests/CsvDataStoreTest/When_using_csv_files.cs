@@ -134,5 +134,23 @@ namespace PubFinderGeneral.Data.Store.Tests.CsvDataStoreTest
             result.Item1.Should().NotBeEmpty();
             result.Item1.Count().Should().Be(2);
         }
+
+        [Fact]
+        public async Task Given_a_standard_csv_file_with_multiple_lines_with_filtered_return_values()
+        {
+            var path = Path.Combine(Environment.CurrentDirectory, "CsvDataStoreTest", "TestFiles");
+            var fileName = "StandardFile.csv";
+
+            var store = new CsvPubDataStore(path, fileName);
+
+            var result = await store.GetFilteredPubData(1, 5, "food");
+
+            result.Item1.Should().NotBeNull();
+            result.Item1.Should().NotBeEmpty();
+            result.Item1.Count().Should().Be(2);
+            result.Item1.FirstOrDefault().Should().NotBeNull();
+            result.Item1.FirstOrDefault()?.Name.Should().NotBe(string.Empty);
+
+        }
     }
 }
